@@ -36,29 +36,28 @@ public class Tester {
 
             var yesOrNo = JOptionPane.showOptionDialog(null, label, "Select an Option",
                     JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, buttons, buttons[0]);
-            if (yesOrNo == 0) {
-                JOptionPane.showMessageDialog(null, "You chose yes!");
+
+            switch (yesOrNo) {
+                case 0:
+                    JOptionPane.showMessageDialog(null, "You chose yes!");
+                    break;
+                case 1:
+                    tempClassCode = JOptionPane.showInputDialog(null, "Enter your class code here:");
+                    tempStudentName = JOptionPane.showInputDialog(null, "Input the name of your first student (first letter uppercase)");
+                    tempInput = JOptionPane.showInputDialog(null, "Input a list of the students marks seperated by a space");
+                    //tempDArray = idk(tempInput);
+                    tempStudents.add(new ArrayList<Student>());
+                    //tempStudents.get(0).add(new Student(tempStudentName,tempDArray));
+                    ClassList c = new ClassList(tempClassCode, tempStudents);
+                    System.out.println(tempInput);
+                    break;
+                case 2:
+                    JLabel cancel = new JLabel("You chose to exit."+"\n Thank you for using Markbock!");
+                    cancel.setFont(new Font("Arial", Font.BOLD, 60));
+                    JOptionPane.showMessageDialog(null, cancel);
+                    inUse = false;
+                    break;
             }
-            if (yesOrNo == 1) {
-                tempClassCode = JOptionPane.showInputDialog(null, "Enter your class code here:");
-                tempStudentName = JOptionPane.showInputDialog(null, "Input the name of your first student (first letter uppercase)");
-                tempInput = JOptionPane.showInputDialog(null, "Input a list of the students marks seperated by a space");
-                //tempDArray = idk(tempInput);
-                tempStudents.add(new ArrayList<Student>());
-                //tempStudents.get(0).add(new Student(tempStudentName,tempDArray));
-                ClassList c = new ClassList(tempClassCode, tempStudents);
-                System.out.println(tempInput);
-
-
-
-            }
-            if (yesOrNo == 2) {
-                JLabel cancel = new JLabel("You chose to exit."+"\n Thank you for using Markbock!");
-                cancel.setFont(new Font("Arial", Font.BOLD, 60));
-                JOptionPane.showMessageDialog(null, cancel);
-                inUse = false;
-            }
-
 
         }//end of while loop in use
     }//end of main

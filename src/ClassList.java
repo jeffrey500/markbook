@@ -17,10 +17,10 @@ public class ClassList {
         for (int a = 0; a < studentList.size(); a++){
             for (int b = 0; b < studentList.get(a).size(); b++){
                 stuff += studentList.get(a).get(b).getName() + " ";
-                System.out.println(studentList.get(a).get(b).getName() + " ");
+                System.out.print(studentList.get(a).get(b).getName() + " ");
             }
             stuff += "\n";
-            System.out.println("next line");
+            System.out.println("");
         }
         return stuff;
     }
