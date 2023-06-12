@@ -59,20 +59,20 @@ public class ClassList {
     }
 
     public void addStudent(int row, int column, Student s){
-        try {
             studentList.get(row).add(column, s);
-        } catch (Exception e){
-        }
     }
+
 
     public void addStudentInRow(Student s){
         studentList.get(studentList.size()-1).add(s);
     }
 
+
     public void addStudetNewRow(Student s){
         studentList.add(new ArrayList<Student>());
         studentList.get(studentList.size()-1).add(s);
     }
+
 
     public double getAverageMark(){
         double average = 0;
@@ -111,6 +111,8 @@ public class ClassList {
             return (total[total.length/2]+(total[(total.length/2-1)])/2.0);
         }
     }
+
+
     public Student getStudent(String studentName){
         for (int a = 0; a < studentList.size(); a++){
             for (int b = 0; b < studentList.get(a).size(); b++){

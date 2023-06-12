@@ -50,7 +50,6 @@ public class Student {
         marks.add(makeValid(mark));
     }
 
-
     //method to add a list of double values to the private array list
     public void addMarks(double[] marks) {
         for (int i = 0; i < marks.length; i++) {
@@ -94,13 +93,7 @@ public class Student {
         } else if(marks.size()%2==1){
             return marks.get(marks.size()/2);
         }else {
-
-
             return ((marks.get(marks.size()/2))+(marks.get(marks.size()/2-1)))/2.0;
         }
-
-
     }
-
-
 }//end of Student Class
