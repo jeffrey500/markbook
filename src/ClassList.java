@@ -11,6 +11,9 @@ public class ClassList {
         this.studentList = studentList;
     }
 
+    public ArrayList<ArrayList<Student>> getStudentList() {
+        return studentList;
+    }
 
     public String printClassroom() {
         String stuff = "";
