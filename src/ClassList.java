@@ -14,6 +14,9 @@ public class ClassList {
         this.studentList = studentList;
     }
 
+    public ArrayList<ArrayList<Student>> getStudentList() {
+        return studentList;
+    }
 
     //create a method that returns the entire classroom to be presented in the GUI
     public String printClassroom() {
