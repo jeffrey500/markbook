@@ -92,7 +92,7 @@ public class Student {
         } else if(marks.size()%2==1){
             return marks.get(marks.size()/2);
         }else {
-            return ((marks.get(marks.size()/2))+(marks.get(marks.size()/2-1)))/2.0;
+            return ((int) ((marks.get(marks.size()/2))+(marks.get(marks.size()/2-1)))/2.0 * 10)/10.0;
         }
     }
 }//end of Student Class
