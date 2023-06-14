@@ -13,8 +13,7 @@ public class Student {
     //Student constructor that assigns instance variable studentName to the input and assigns all elements in the passed
     //Double array to the private instance array list
     public Student(String studentName, double[] marks) {
-        this.studentName = studentName;
-
+        this.studentName = studentName.toLowerCase();
 
         for (int i = 0; i < marks.length; i++) {
             this.marks.add(makeValid(marks[i]));
@@ -64,7 +63,7 @@ public class Student {
 
 
     //method to get the average mark of the student
-    public double getAverageMark() {
+    public double getAverageMarkM() {
         double total = 0;
         for (int i = 0; i < marks.size(); i++) {
             total += marks.get(i);
