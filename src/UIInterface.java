@@ -3,16 +3,9 @@ import java.awt.*;
 
 public interface UIInterface {
 
-    String showInputDialog(Component parentComponent,
-                           Object message, String title, int messageType)
-            throws HeadlessException;
+    String showInputDialog(Object message) throws HeadlessException;
 
-    int showOptionDialog(Component parentComponent,
-                         Object message, String title, int optionType, int messageType,
-                         Icon icon, Object[] options, Object initialValue)
-            throws HeadlessException;
+    int showOptionDialog(Object message, Object[] options, Object initialValue) throws HeadlessException;
 
-    void showMessageDialog(Component parentComponent,
-                           Object message, String title, int messageType)
-            throws HeadlessException;
+    void showMessageDialog(Object message) throws HeadlessException;
 }

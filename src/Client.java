@@ -20,7 +20,7 @@ public class Client {
         ArrayList<ClassList> listOfCLasses = new ArrayList<ClassList>();
 
         //Some welcome messages
-        uiShowMessage("Welcome to Markbock!" + "\nEmpowering teachers since 2023!");
+        uiShowMessage("Welcome to markbock!" + "\nEmpowering teachers since 2023!");
 
         //tells the user the purpose of the program and some instructions on what to do
         uiShowMessage("This program is intended to help teachers keep track of the marks of students\n" +
@@ -35,26 +35,11 @@ public class Client {
         //popups and textboxes for user to enter vital information to make a classroom
         String firstStudent = removeSpaceEnd(JOptionPane.showInputDialog(null,
                 "Let's move on to adding students!\nWhat is the first name of your first student in you first row?", "Markbock", 3));
-
-
         String firstStudentMarksSTR = removeSpaceEnd(JOptionPane.showInputDialog(null,
                 "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
 
         //create array of marks for first student
         double[] firstStudentsMarks = stringToDoubleArray(firstStudentMarksSTR);
-
-        while (true) {
-            if (firstStudentsMarks != null) {
-                break;
-            }
-            uiShowMessage("Your list of marks contains a non number! It's invalid!");
-
-            firstStudentMarksSTR = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                    "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
-
-            //create array of marks for first student
-            firstStudentsMarks = stringToDoubleArray(firstStudentMarksSTR);
-        }
 
         listOfCLasses.add(makeClassList(classCode, firstStudent, firstStudentsMarks));
 
@@ -69,17 +54,6 @@ public class Client {
 
                 String studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
                         "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
-
-                while (true) {
-                    if (stringToDoubleArray(studMarks) != null) {
-                        break;
-                    }
-                    uiShowMessage("Your list of marks contains a non number! It's invalid!");
-
-                    studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                            "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
-                }
-
                 listOfCLasses.get(0).addStudentInRow(new Student(studName, stringToDoubleArray(studMarks)));
             } else {
                 //in case they enter the same name twice
@@ -93,17 +67,6 @@ public class Client {
             if (findClassList(listOfCLasses, classCode).getStudent(studName) == null) {
                 String studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
                         "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
-
-                while (true) {
-                    if (stringToDoubleArray(studMarks) != null) {
-                        break;
-                    }
-                    uiShowMessage("Your list of marks contains a non number! It's invalid!");
-
-                    studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                            "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
-                }
-
                 listOfCLasses.get(0).addStudentNewRow(new Student(studName, stringToDoubleArray(studMarks)));
             } else {
                 uiShowMessage("That student name has been taken already!");
@@ -124,7 +87,7 @@ public class Client {
 
     //create a method that repeats the menu function
     private static void menuRepeat(ArrayList<ClassList> listOfCLasses, String classCode) {
-        //if the user wants to keep using the program
+       //if the user wants to keep using the program
         while (true) {
 
             //options for user to choose from
@@ -141,16 +104,6 @@ public class Client {
                     if (findClassList(listOfCLasses, classCode).getStudent(studName1) == null) {
                         String studMarks1 = removeSpaceEnd(JOptionPane.showInputDialog(null,
                                 "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
-
-                        while (true) {
-                            if (stringToDoubleArray(studMarks1) != null) {
-                                break;
-                            }
-                            uiShowMessage("Your list of marks contains a non number! It's invalid!");
-
-                            studMarks1 = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                    "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
-                        }
                         findClassList(listOfCLasses, classCode).addStudentInRow(new Student(studName1, stringToDoubleArray(studMarks1)));
                     } else {
                         //if student name has already been entered
@@ -168,17 +121,6 @@ public class Client {
 
                         String studMarks1 = removeSpaceEnd(JOptionPane.showInputDialog(null,
                                 "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
-
-                        while (true) {
-                            if (stringToDoubleArray(studMarks1) != null) {
-                                break;
-                            }
-                            uiShowMessage("Your list of marks contains a non number! It's invalid!");
-
-                            studMarks1 = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                    "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
-                        }
-
                         findClassList(listOfCLasses, classCode).addStudentNewRow(new Student(studName1, stringToDoubleArray(studMarks1)));
                     } else {
                         uiShowMessage("That student name has been taken already!");
@@ -205,7 +147,7 @@ public class Client {
     //create a method that allows for continuous operation
     public static void normalOperation(ArrayList<ClassList> listOfClasses) {
         while (true) {
-            String[] menuButtons = {"Create new classList", "Access existing ClassList", "Stop program"};
+            String[] menuButtons = {"Create new classList", "Access existing ClassList"};
             //returns value corresponding with the option the user chooses
             var yesOrNo = JOptionPane.showOptionDialog(null,
                     "What would you like to do?", "Markbock", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, menuButtons, menuButtons[0]);
@@ -221,38 +163,13 @@ public class Client {
                     //new double array converting the string marks the user entered into double type
                     double[] newStudentMarksArray = stringToDoubleArray(newStudentMarks);
 
-                    while (true) {
-                        if (newStudentMarksArray != null) {
-                            break;
-                        }
-                        uiShowMessage("Your list of marks contains a non number! It's invalid!");
-                        newStudentMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
-
-                        //create array of marks for first student
-                        newStudentMarksArray = stringToDoubleArray(newStudentMarks);
-                    }
-
                     //button options for the user to press
                     String[] newButtons = {"Add student in row", "Move to next row", "finish class"};
                     var newYesOrNo = JOptionPane.showOptionDialog(null,
                             "What would you like to do?", "Markbock", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, newButtons, newButtons[0]);
-                    while (true) {
-                        if (newStudentMarksArray != null) {
-                            break;
-                        }
-                        uiShowMessage("Your list of marks contains a non number! It's invalid!");
-
-                        newStudentMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
-
-                        //create array of marks for first student
-                        newStudentMarksArray = stringToDoubleArray(newStudentMarks);
-                    }
 
                     //use the makeClasslist method to create a new class if the user chooses to
                     listOfClasses.add(makeClassList(newClassCode, newStudent, newStudentMarksArray));
-
                     if (newYesOrNo == 0) {
                         String studName = removeSpaceEnd(JOptionPane.showInputDialog(null,
                                 "What is the first name of your first student in the row?", "Markbock", 3));
@@ -261,16 +178,6 @@ public class Client {
                         if (findClassList(listOfClasses, newClassCode).getStudent(studName) == null) {
                             String studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
                                     "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
-
-                            while (true) {
-                                if (stringToDoubleArray(studMarks) != null) {
-                                    break;
-                                }
-                                uiShowMessage("Your list of marks contains a non number! It's invalid!");
-
-                                studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                        "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
-                            }
                             listOfClasses.get(listOfClasses.size() - 1).addStudentInRow(new Student(studName, stringToDoubleArray(studMarks)));
 
                             menuRepeat(listOfClasses, newClassCode);
@@ -286,17 +193,6 @@ public class Client {
 
                             String studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
                                     "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
-
-                            while (true) {
-                                if (stringToDoubleArray(studMarks) != null) {
-                                    break;
-                                }
-                                uiShowMessage("Your list of marks contains a non number! It's invalid!");
-
-                                studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                        "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
-                            }
-
                             listOfClasses.get(listOfClasses.size() - 1).addStudentNewRow(new Student(studName, stringToDoubleArray(studMarks)));
 
                             menuRepeat(listOfClasses, newClassCode);
@@ -304,11 +200,13 @@ public class Client {
                             uiShowMessage("That student name has been taken already!");
                         }
                     }
+                    //more repetitive options for user to add a new class
+                    menuRepeat(listOfClasses, newClassCode);
                 } else {
                     uiShowMessage("That ClassList name has been taken already!");
                 }
 
-            } else if (yesOrNo == 1) {
+            } else {
                 //user has to enter the exact same classcode they entered previously to access their class
                 String mainMenuClasses = "Type the class code of the class you want to access\nAvailable class codes:";
                 for (int i = 0; i < listOfClasses.size(); i++) {
@@ -366,92 +264,31 @@ public class Client {
 
                             //if user wants to add a student anywhere in the 2D arraylist
                             if (addAndRemoveMenu == 0) {
-                                String addStudent = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                        "Where would you like to add the student type row then column\nnote that row and colum both start at index one\nYou can go one over the current row or colum\n" + findClassList(listOfClasses,
-                                                inputClassCode).printClassroom(), "Markbock", 3));
+                                String addStudent = JOptionPane.showInputDialog(null,
+                                        "Where would you like to add the student type row then column\nMake sure that the row exists!\n" + findClassList(listOfClasses,
+                                                inputClassCode).printClassroom(), "Markbock", 3);
 
-                                //catch invalid input
+                                //to catch any errors that may come up
                                 try {
                                     int space = addStudent.indexOf(" ");
                                     int row = Integer.valueOf(addStudent.substring(0, space));
                                     int column = Integer.valueOf(addStudent.substring(space + 1));
-
-                                    if (row == 0 || column == 0) {
-                                        uiShowMessage("You cannot have a row or colum equal to 0");
-
-                                    } else if (row <= findClassList(listOfClasses, inputClassCode).getStudentList().size() && column <= findClassList(listOfClasses, inputClassCode).getStudentList().get(row-1).size()) {
-                                        String studName = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                                "What is the first name of your student?", "Markbock", 3));
-
-                                        if (findClassList(listOfClasses,inputClassCode).getStudent(studName) == null) {
-                                            String studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                                    "Give us a list of marks of that student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
-
-                                            while (true) {
-                                                if (stringToDoubleArray(studMarks) != null) {
-                                                    break;
-                                                }
-                                                uiShowMessage("Your list of marks contains a non number! It's invalid!");
-                                                studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                                        "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
-                                            }
-                                            findClassList(listOfClasses, inputClassCode).addStudent(row-1, column-1, new Student(studName, stringToDoubleArray(studMarks)));
-                                        } else {
-                                            uiShowMessage("That student name has been taken already!");
-                                        }
-
-                                    } else if (row == findClassList(listOfClasses, inputClassCode).getStudentList().size() + 1  && column == 1) {
-                                        String studName = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                                "What is the first name of your student?", "Markbock", 3));
-                                        if (findClassList(listOfClasses,inputClassCode).getStudent(studName) == null) {
-                                            String studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                                    "Give us a list of marks of that student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
-
-                                            while (true) {
-                                                if (stringToDoubleArray(studMarks) != null) {
-                                                    break;
-                                                }
-                                                uiShowMessage("Your list of marks contains a non number! It's invalid!");
-                                                studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                                        "Give us a list of marks of that student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
-                                            }
-                                            findClassList(listOfClasses, inputClassCode).addStudentNewRow(new Student(studName, stringToDoubleArray(studMarks)));
-                                        } else {
-                                            uiShowMessage("That student name has been taken already!");
-                                        }
-                                    } else if (row <= findClassList(listOfClasses, inputClassCode).getStudentList().size() && column == findClassList(listOfClasses, inputClassCode).getStudentList().get(row-1).size()+1) {
-                                        String studName = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                                "What is the first name of your student?", "Markbock", 3));
-                                        if (findClassList(listOfClasses,inputClassCode).getStudent(studName) == null) {
-                                            String studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                                    "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
-
-                                            while (true) {
-                                                if (stringToDoubleArray(studMarks) != null) {
-                                                    break;
-                                                }
-                                                uiShowMessage("Your list of marks contains a non number! It's invalid!");
-                                                studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                                        "Give us a list of marks of that student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
-                                            }
-                                            findClassList(listOfClasses, inputClassCode).getStudentList().get(row-1).add(column-1,new Student(studName, stringToDoubleArray(studMarks)));
-                                        } else {
-                                            uiShowMessage("That student name has been taken already!");
-                                        }
-                                    } else {
-                                        uiShowMessage("You inputted a number that is out of bounds");
-                                    }
+                                    String studName = removeSpaceEnd(JOptionPane.showInputDialog(null,
+                                            "What is the first name of your first student in the row?", "Markbock", 3));
+                                    String studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
+                                            "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                                    findClassList(listOfClasses, inputClassCode).addStudent(row, column, new Student(studName, stringToDoubleArray(studMarks)));
                                 } catch (Exception e) {
-                                    uiShowMessage("You inputted a non number value!");
+                                    uiShowMessage("You did not type a valid input");
                                 }
 
                             } else {
                                 //if the user wants to remove a student
-                                String removeStudent = removeSpaceEnd(removeSpaceEnd(JOptionPane.showInputDialog(null,
+                                String removeStudent = removeSpaceEnd(JOptionPane.showInputDialog(null,
                                         "Which student would you like to remove?\nType row followed by a space and then the column\n" + findClassList(listOfClasses,
-                                                inputClassCode).printClassroom(), "Markbock", 3)));
-                                //need to check for invalid inputs again
-                                try {
+                                                inputClassCode).printClassroom(), "Markbock", 3));
+                              //need to check for invalid inputs again
+                               try {
                                     int space = removeStudent.indexOf(" ");
                                     int row = Integer.valueOf(removeStudent.substring(0, space));
                                     int column = Integer.valueOf(removeStudent.substring(space + 1));
@@ -466,9 +303,6 @@ public class Client {
                             uiShowMessage("This is the classroom:\n" + findClassList(listOfClasses, inputClassCode).printClassroom());
                     }
                 }
-            } else {
-                uiShowMessage("Thank you for using Markbock");
-                System.exit(0);
             }
         }
     }
@@ -581,7 +415,7 @@ public class Client {
 
     //create a method that turns a String in an array of doubles
     public static double[] stringToDoubleArray(String m) {
-        try {
+        try{
             String marks = m;
             String[] str = marks.split(" ", m.length());
             double[] arrMarks = new double[str.length];
@@ -589,19 +423,19 @@ public class Client {
                 arrMarks[i] = Double.valueOf(str[i]);
             }//end of for loop transferring marks to double array
             return arrMarks;
-        } catch (Exception e) {
+        } catch (Exception e){
             return null;
         }
     }
 
 
     //remove all blank spaces behind a string
-    public static String removeSpaceEnd(String a) {
+    public static String removeSpaceEnd(String a){
         boolean isTrue = true;
-        while (isTrue == true) {
-            if (a.substring(a.length() - 1).equals(" ")) {
-                a = a.substring(0, a.length() - 1);
-            } else {
+        while (isTrue == true){
+            if (a.substring(a.length()-1).equals(" ")){
+                a = a.substring(0,a.length()-1);
+            } else{
                 isTrue = false;
             }
         }
@@ -610,8 +444,11 @@ public class Client {
 } //End of Client Class
 
 
+
+
 //TODO: list of things that don't work
-// remove
+// add student
+// add prevent program from accepting letters in stringToDoubleArray
 
 //TODO: list of things that need to be made
-// option to quit program
+// option to quit prog

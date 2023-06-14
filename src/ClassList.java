@@ -24,8 +24,10 @@ public class ClassList {
         for (int a = 0; a < studentList.size(); a++){
             for (int b = 0; b < studentList.get(a).size(); b++){
                 stuff += studentList.get(a).get(b).getName() + " ";
+                System.out.print(studentList.get(a).get(b).getName() + " ");
             }
             stuff += "\n";
+            System.out.println("");
         }
         return stuff;
     }
@@ -66,7 +68,7 @@ public class ClassList {
                 totalStudents++;
             }
         }
-        return ((int) (average/totalStudents * 10))/10.0;
+        return average/totalStudents;
     }
 
 
@@ -93,7 +95,7 @@ public class ClassList {
         } else if(total.length%2==1){
             return total[total.length/2];
         }else {
-            return ((int) ((total[total.length/2]+(total[(total.length/2-1)]))/2.0 * 10))/10.0;
+            return (total[total.length/2]+(total[(total.length/2-1)]))/2.0;
         }
     }
 
@@ -116,7 +118,4 @@ public class ClassList {
         return classCode;
     }
 
-    public ArrayList<ArrayList<Student>> getStudentList(){
-        return studentList;
-    }
 } //end of ClassList class

@@ -44,7 +44,7 @@ class ClassListTest {
 
     @Test
     void addStudetNewRow() {
-        classList.addStudetNewRow(new Student("NewStudent", new double[]{}));
+        classList.addStudentNewRow(new Student("NewStudent", new double[]{}));
 
         assertEquals(3, studentList.size());
         assertEquals(3, list2.size());

@@ -52,7 +52,7 @@ public class ClientNew {
                         StudentModifyOrAccess(inputClassCode);
                         break;
                     case 1:
-                        StudentStatistics(inputClassCode);
+                        StudentClassStatistics(inputClassCode);
                         break;
                     case 2:
                         StudentAddOrModify(inputClassCode);
@@ -66,8 +66,7 @@ public class ClientNew {
 
     private void StudentModifyOrAccess(String inputClassCode) {
         String[] modifyOrAccessGrades = {"access a student statistic", "Modify a grade from a student"};
-        var modifyOrAccessGradesMenu = ui.showOptionDialog(null, "What would you like to do?",
-                "Markbock", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, modifyOrAccessGrades, modifyOrAccessGrades[0]);
+        var modifyOrAccessGradesMenu = ui.showOptionDialog("What would you like to do?", modifyOrAccessGrades, modifyOrAccessGrades[0]);
 
         if (modifyOrAccessGradesMenu == 0) {
             doAccessStudentStatistics(inputClassCode);
@@ -77,44 +76,39 @@ public class ClientNew {
         }
     }
 
-    private void StudentStatistics(String inputClassCode) {
+    private void StudentClassStatistics(String inputClassCode) {
         String[] classStats = {"display class average", "display class median"};
-        var classStatsMenu = ui.showOptionDialog(null, "What would you like to do?",
-                "Markbock", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, classStats, classStats[0]);
+        var classStatsMenu = ui.showOptionDialog("What would you like to do?", classStats, classStats[0]);
 
         if (classStatsMenu == 0) {
-            uiShowMessage("The class average mark is " + findClassList(inputClassCode).getAverageMark());
+            uiShowMessage("The class average mark is " + findClassList(inputClassCode).getClassAverageMark());
 
         } else {
-            uiShowMessage("The class Median mark is " + findClassList(inputClassCode).getMedianMark());
+            uiShowMessage("The class Median mark is " + findClassList(inputClassCode).getMedianClassMark());
         }
     }
 
     private void StudentAddOrModify(String inputClassCode) {
         String[] addAndRemove = {"Add a student", "remove a student"};
-        var addAndRemoveMenu = ui.showOptionDialog(null,
-                "What would you like to do?", "Markbock", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,
-                null, addAndRemove, addAndRemove[0]);
+        var addAndRemoveMenu = ui.showOptionDialog("What would you like to do?", addAndRemove, addAndRemove[0]);
 
         if (addAndRemoveMenu == 0) {
-            String addStudent = ui.showInputDialog(null,
-                    "Where would you like to add the student type row then column\nMake sure that the row exists!\n" + findClassList(inputClassCode).printClassroom(), "Markbock", 3);
+            String addStudent = ui.showInputDialog("Where would you like to add the student type row then column\nMake sure that the row exists!\n"
+                    + findClassList(inputClassCode).printClassroom());
             try {
                 int space = addStudent.indexOf(" ");
                 int row = Integer.valueOf(addStudent.substring(0, space));
                 int column = Integer.valueOf(addStudent.substring(space + 1));
-                String studName = ui.showInputDialog(null,
-                        "What is the first name of your first student in the row?", "Markbock", 3);
-                String studMarks = ui.showInputDialog(null,
-                        "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100", "Markbock", 3);
+                String studName = ui.showInputDialog("What is the first name of your first student in the row?");
+                String studMarks = ui.showInputDialog("Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100");
                 findClassList(inputClassCode).addStudent(row, column, new Student(studName, idk(studMarks)));
             } catch (Exception e) {
                 uiShowMessage("You did not type a valid input");
             }
 
         } else {
-            String removeStudent = ui.showInputDialog(null,
-                    "Which student would you like to remove?\nType row followed by a space and then the column\n" + findClassList(inputClassCode).printClassroom(), "Markbock", 3);
+            String removeStudent = ui.showInputDialog("Which student would you like to remove?\nType row followed by a space and then the column\n"
+                    + findClassList(inputClassCode).printClassroom());
             try {
                 int space = removeStudent.indexOf(" ");
                 int row = Integer.valueOf(removeStudent.substring(0, space));
@@ -128,8 +122,7 @@ public class ClientNew {
 
     private int selectExitingStudents() {
         String[] classMenuButtons = {"Modify/Access student grades", "class statistics", "Add/remove students"};
-        var classMenu = ui.showOptionDialog(null, "What would you like to do?",
-                "Markbock", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, classMenuButtons, classMenuButtons[0]);
+        var classMenu = ui.showOptionDialog("What would you like to do?", classMenuButtons, classMenuButtons[0]);
 
         return classMenu;
     }
@@ -141,7 +134,7 @@ public class ClientNew {
             mainMenuClasses += listOfCLasses.get(i).getClassCode();
         }
 
-        String inputClassCode = ui.showInputDialog(null, mainMenuClasses, "Markbock", 3);
+        String inputClassCode = ui.showInputDialog(mainMenuClasses);
 
         ClassList classList = findClassList(inputClassCode);
         if (classList == null) {
@@ -153,37 +146,35 @@ public class ClientNew {
     }
 
     private void uiShowMessage(String text) {
-        ui.showMessageDialog(null, text, "Markbock", 3);
+        ui.showMessageDialog(text);
     }
 
     private int selectNextSteps() {
         String[] menuButtons = {"Create new classList", "Access existing ClassList"};
-        var yesOrNo = ui.showOptionDialog(null,
-                "What would you like to do?", "Markbock", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, menuButtons, menuButtons[0]);
+        var yesOrNo = ui.showOptionDialog("What would you like to do?", menuButtons, menuButtons[0]);
 
         return yesOrNo;
     }
 
     private void doAccessStudentStatistics(String inputClassCode) {
         String[] studentStatistic = {"get student average", "get student median", "show all grades"};
-        var studentStatisticMenu = ui.showOptionDialog(null,
-                "What would you like to do?", "Markbock", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, studentStatistic, studentStatistic[0]);
+        var studentStatisticMenu = ui.showOptionDialog("What would you like to do?", studentStatistic, studentStatistic[0]);
 
 
         if (studentStatisticMenu == 0) {
-            String inputStudent = ui.showInputDialog(null, "Type the name of the student", "Markbock", 3);
+            String inputStudent = ui.showInputDialog("Type the name of the student");
 
 
-            uiShowMessage(inputStudent + " has an average of " + findStudent(inputStudent, findClassList(inputClassCode)).getAverageMark() + "%");
+            uiShowMessage(inputStudent + " has an average of " + findStudent(inputStudent, findClassList(inputClassCode)).getAverageMarkM() + "%");
 
 
         } else if (studentStatisticMenu == 1) {
-            String inputStudent = ui.showInputDialog(null, "Type the name of the student", "Markbock", 3);
+            String inputStudent = ui.showInputDialog("Type the name of the student");
             uiShowMessage(inputStudent + " has a median " + findStudent(inputStudent, findClassList(inputClassCode)).getMedian());
 
 
         } else {
-            String inputStudent = ui.showInputDialog(null, "Type the name of the student", "Markbock", 3);
+            String inputStudent = ui.showInputDialog("Type the name of the student");
             String output = inputStudent + "'s marks:";
             ArrayList<Double> temp = new ArrayList<Double>();
             temp = findClassList(inputClassCode).getStudent(inputStudent).getMarks();
@@ -198,13 +189,11 @@ public class ClientNew {
 
     private void doModifyStudentGrade(String inputClassCode) {
         String[] modifyGrades = {"add a grade", "remove a grade"};
-        var modifyGradesMenu = ui.showOptionDialog(null,
-                "What would you like to do?", "Markbock", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, modifyGrades, modifyGrades[0]);
+        var modifyGradesMenu = ui.showOptionDialog("What would you like to do?", modifyGrades, modifyGrades[0]);
 
         if (modifyGradesMenu == 0) {
-            String inputStudent = ui.showInputDialog(null, "Type the name of the student", "Markbock", 3);
-            String gradeInput = ui.showInputDialog(null,
-                    "What percentage grade would you like to add\ndeciamls allowed only numbers!", "Markbock", 3);
+            String inputStudent = ui.showInputDialog("Type the name of the student");
+            String gradeInput = ui.showInputDialog("What percentage grade would you like to add\ndeciamls allowed only numbers!");
 
             try {
                 findStudent(inputStudent, findClassList(inputClassCode)).addMark(Double.valueOf(gradeInput));
@@ -214,7 +203,7 @@ public class ClientNew {
             }
 
         } else {
-            String inputStudent = ui.showInputDialog(null, "Type the name of the student", "Markbock", 3);
+            String inputStudent = ui.showInputDialog("Type the name of the student");
             String output = inputStudent + "'s marks:";
             ArrayList<Double> temp = new ArrayList<Double>();
             temp = findClassList(inputClassCode).getStudent(inputStudent).getMarks();
@@ -226,7 +215,7 @@ public class ClientNew {
             }
 
             output += "\nWhich mark would you like to remove (type the index number starting from 1)";
-            String removeMark = ui.showInputDialog(null, output, "Markbock", 3);
+            String removeMark = ui.showInputDialog(output);
             try {
                 findClassList(inputClassCode).getStudent(inputStudent).removeMark(Integer.valueOf(removeMark));
                 uiShowMessage("That mark has been removed!");
@@ -244,23 +233,20 @@ public class ClientNew {
     }
 
     private void addStudentNewRow(String classCode) {
-        String studName = ui.showInputDialog(null, "What is the first name of the student", "Markbock", 3);
-        String studMarks = ui.showInputDialog(null,
-                "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100", "Markbock", 3);
-        findClassList(classCode).addStudetNewRow(new Student(studName, idk(studMarks)));
+        String studName = ui.showInputDialog("What is the first name of the student");
+        String studMarks = ui.showInputDialog("Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100");
+        findClassList(classCode).addStudentNewRow(new Student(studName, idk(studMarks)));
     }
 
     private void addStudentInRow(String classCode) {
-        String studName = ui.showInputDialog(null, "What is the first name of your first student in the row?", "Markbock", 3);
-        String studMarks = ui.showInputDialog(null,
-                "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100", "Markbock", 3);
+        String studName = ui.showInputDialog("What is the first name of your first student in the row?");
+        String studMarks = ui.showInputDialog("Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100");
         findClassList(classCode).addStudentInRow(new Student(studName, idk(studMarks)));
     }
 
     private int selectNewStudents() {
         String[] buttons = {"Add student in row", "Move to next row", "finish class"};
-        var yesOrNo = ui.showOptionDialog(null,
-                "What would you like to do?", "Markbock", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, buttons, buttons[0]);
+        var yesOrNo = ui.showOptionDialog("What would you like to do?", buttons, buttons[0]);
         return yesOrNo;
     }
 
@@ -275,12 +261,11 @@ public class ClientNew {
 
     private String newClass() {
 
-        String classCode = ui.showInputDialog(null,
-                "Let's create your first classroom!\nWhat is the class code?", "Markbock", 3);
-        String firstStudent = ui.showInputDialog(null,
-                "Let's move on to adding students!\nWhat is the first name of your first student in you first row?", "Markbock", 3);
-        String firstStudentMarksSTR = ui.showInputDialog(null,
-                "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100", "Markbock", 3);
+        String ordinal = (listOfCLasses.size()==0)?"first":"next";
+
+        String classCode = ui.showInputDialog("Let's create your "+ordinal+" classroom!\nWhat is the class code?");
+        String firstStudent = ui.showInputDialog("Let's move on to adding students!\nWhat is the first name of your first student in you first row?");
+        String firstStudentMarksSTR = ui.showInputDialog("Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100");
         double[] firstStudentsMarks = idk(firstStudentMarksSTR);
 
         listOfCLasses.add(makeClassList(classCode, firstStudent, firstStudentsMarks));
@@ -310,17 +295,18 @@ public class ClientNew {
 class JOptionPaneUI implements UIInterface {
 
     @Override
-    public String showInputDialog(Component parentComponent, Object message, String title, int messageType) throws HeadlessException {
-        return JOptionPane.showInputDialog(parentComponent, message, title, messageType);
+    public String showInputDialog(Object message) throws HeadlessException {
+        return JOptionPane.showInputDialog(null, message, "Markbock", 3);
     }
 
     @Override
-    public int showOptionDialog(Component parentComponent, Object message, String title, int optionType, int messageType, Icon icon, Object[] options, Object initialValue) throws HeadlessException {
-        return JOptionPane.showOptionDialog(parentComponent, message, title, optionType, messageType, icon, options, initialValue);
+    public int showOptionDialog(Object message, Object[] options, Object initialValue) throws HeadlessException {
+        return JOptionPane.showOptionDialog(null, message, "Markbock",
+                JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, initialValue);
     }
 
     @Override
-    public void showMessageDialog(Component parentComponent, Object message, String title, int messageType) throws HeadlessException {
-        JOptionPane.showMessageDialog(parentComponent, message, title, messageType);
+    public void showMessageDialog(Object message) throws HeadlessException {
+        JOptionPane.showMessageDialog(null, message, "Markbock", 3);
     }
 }
