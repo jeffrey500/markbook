@@ -33,17 +33,6 @@ public class Student {
     }
 
 
-    //Method to return a single mark entry using a entry number
-    public Double getMarks(double entry) {
-        try {
-            marks.get((int) (entry - 1));
-        } catch (IndexOutOfBoundsException e) {
-            return -1.0;
-        }
-        return marks.get((int) (entry - 1));
-    }
-
-
     //Add mark to the marks array list
     public void addMark(double mark) {
         marks.add(makeValid(mark));
@@ -84,6 +73,7 @@ public class Student {
     }
 
 
+    //Method to get the class median and return a double
     public double getMedian() {
         if (marks.size() == 0){
             return -1.0;

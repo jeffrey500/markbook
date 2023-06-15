@@ -20,7 +20,7 @@ public class ClassList {
         String stuff = "";
         for (int a = 0; a < studentList.size(); a++){
             for (int b = 0; b < studentList.get(a).size(); b++){
-                stuff += studentList.get(a).get(b).getName() + " ";
+                stuff += studentList.get(a).get(b).getName() + "   ";
             }
             stuff += "\n";
         }
@@ -61,14 +61,15 @@ public class ClassList {
             for (int j = 0; j<studentList.get(i).size(); j++){
                 average += studentList.get(i).get(j).getAverageMarkM();
                 totalStudents++;
-            }
-        }
+            }//end of innermost for loop
+        }//end of outer foor loop
         return ((int) (average/totalStudents * 10))/10.0;
-    }
+    }//end of method
 
 
     //create a method that returns the class median mark
     public double getMedianClassMark(){
+        //instantiate variables
         int count = 0;
         int counter = 0;
         for (int i = 0; i<studentList.size(); i++){

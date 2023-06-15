@@ -38,7 +38,9 @@ public class Client {
 
 
         String firstStudentMarksSTR = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                "Give us a list of marks of that first student! (decimals allowed)" +
+                        "\nRemember to add a space between marks to represent separate marks!" +
+                        "\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
 
         //create array of marks for first student
         double[] firstStudentsMarks = stringToDoubleArray(firstStudentMarksSTR);
@@ -47,6 +49,7 @@ public class Client {
             if (firstStudentsMarks != null) {
                 break;
             }
+            //invalid message
             uiShowMessage("Your list of marks contains a non number! It's invalid!");
 
             firstStudentMarksSTR = removeSpaceEnd(JOptionPane.showInputDialog(null,
@@ -67,17 +70,25 @@ public class Client {
             String studName = removeSpaceEnd(JOptionPane.showInputDialog(null, "What is the first name of your first student in the row?", "Markbock", 3));
             if (findClassList(listOfCLasses, classCode).getStudent(studName) == null) {
 
+                //showing a popup that the user has to enter marks into
                 String studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                        "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                        "Give us a list of marks of that first student! (decimals allowed)" +
+                                "\nRemember to add a space between marks to represent separate marks!" +
+                                "\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
 
+                //while loop to make sure user dows not enter invalid input
                 while (true) {
                     if (stringToDoubleArray(studMarks) != null) {
                         break;
                     }
+                    //invalid output message
                     uiShowMessage("Your list of marks contains a non number! It's invalid!");
 
+                    //A string of the user marks to be converted into double and sent into the program
                     studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                            "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                            "Give us a list of marks of that first student! (decimals allowed)" +
+                                    "\nRemember to add a space between marks to represent separate marks!" +
+                                    "\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
                 }
 
                 listOfCLasses.get(0).addStudentInRow(new Student(studName, stringToDoubleArray(studMarks)));
@@ -89,19 +100,27 @@ public class Client {
             menuRepeat(listOfCLasses, classCode);
             //if they wish to add students it comes into this if statement
         } else if (yesOrNo == 1) {
+            //second option
             String studName = removeSpaceEnd(JOptionPane.showInputDialog(null, "What is the first name of the student", "Markbock", 3));
             if (findClassList(listOfCLasses, classCode).getStudent(studName) == null) {
                 String studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                        "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                        "Give us a list of marks of that first student! (decimals allowed)" +
+                                "\nRemember to add a space between marks to represent separate marks!" +
+                                "\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
 
                 while (true) {
                     if (stringToDoubleArray(studMarks) != null) {
                         break;
                     }
+                    //invalid output message
                     uiShowMessage("Your list of marks contains a non number! It's invalid!");
 
+                    //A string of the user marks to be converted into double and sent into the program
+
                     studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                            "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                            "Give us a list of marks of that first student! (decimals allowed)" +
+                                    "\nRemember to add a space between marks to represent separate marks!" +
+                                    "\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
                 }
 
                 listOfCLasses.get(0).addStudentNewRow(new Student(studName, stringToDoubleArray(studMarks)));
@@ -140,7 +159,9 @@ public class Client {
 
                     if (findClassList(listOfCLasses, classCode).getStudent(studName1) == null) {
                         String studMarks1 = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                                "Give us a list of marks of that first student! (decimals allowed)" +
+                                        "\nRemember to add a space between marks to represent separate marks!" +
+                                        "\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
 
                         while (true) {
                             if (stringToDoubleArray(studMarks1) != null) {
@@ -148,8 +169,11 @@ public class Client {
                             }
                             uiShowMessage("Your list of marks contains a non number! It's invalid!");
 
+                            //A string of the user marks to be converted into double and sent into the program
                             studMarks1 = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                    "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                                    "Give us a list of marks of that first student! (decimals allowed)" +
+                                            "\nRemember to add a space between marks to represent separate marks!" +
+                                            "\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
                         }
                         findClassList(listOfCLasses, classCode).addStudentInRow(new Student(studName1, stringToDoubleArray(studMarks1)));
                     } else {
@@ -167,20 +191,28 @@ public class Client {
                     if (findClassList(listOfCLasses, classCode).getStudent(studName1) == null) {
 
                         String studMarks1 = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                                "Give us a list of marks of that first student! (decimals allowed)" +
+                                        "\nRemember to add a space between marks to represent separate marks!" +
+                                        "\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
 
                         while (true) {
                             if (stringToDoubleArray(studMarks1) != null) {
                                 break;
                             }
+                            //invalid message again
                             uiShowMessage("Your list of marks contains a non number! It's invalid!");
 
+                            //A string of the user marks to be converted into double and sent into the program
+
                             studMarks1 = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                    "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                                    "Give us a list of marks of that first student! (decimals allowed)" +
+                                            "\nRemember to add a space between marks to represent separate marks!" +
+                                            "\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
                         }
 
                         findClassList(listOfCLasses, classCode).addStudentNewRow(new Student(studName1, stringToDoubleArray(studMarks1)));
                     } else {
+                        //goes back if the user enters the same student name twice
                         uiShowMessage("That student name has been taken already!");
                     }
                     break;
@@ -216,7 +248,9 @@ public class Client {
                 if (findClassList(listOfClasses, newClassCode) == null) {
                     String newStudent = removeSpaceEnd(JOptionPane.showInputDialog(null, "What is the first student in your classlist?", "Markbock", 3));
                     String newStudentMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                            "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                            "Give us a list of marks of that first student! (decimals allowed)" +
+                                    "\nRemember to add a space between marks to represent separate marks!" +
+                                    "\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
 
                     //new double array converting the string marks the user entered into double type
                     double[] newStudentMarksArray = stringToDoubleArray(newStudentMarks);
@@ -224,10 +258,12 @@ public class Client {
                     while (true) {
                         if (newStudentMarksArray != null) {
                             break;
-                        }
+                        }//invalid message
                         uiShowMessage("Your list of marks contains a non number! It's invalid!");
                         newStudentMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                                "Give us a list of marks of that first student! (decimals allowed)" +
+                                        "\nRemember to add a space between marks to represent separate marks!" +
+                                        "\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
 
                         //create array of marks for first student
                         newStudentMarksArray = stringToDoubleArray(newStudentMarks);
@@ -241,10 +277,14 @@ public class Client {
                         if (newStudentMarksArray != null) {
                             break;
                         }
+                        //invalid message
                         uiShowMessage("Your list of marks contains a non number! It's invalid!");
 
+                        //A string of the user marks to be converted into double and sent into the program
                         newStudentMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                                "Give us a list of marks of that first student! (decimals allowed)" +
+                                        "\nRemember to add a space between marks to represent separate marks!" +
+                                        "\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
 
                         //create array of marks for first student
                         newStudentMarksArray = stringToDoubleArray(newStudentMarks);
@@ -260,21 +300,28 @@ public class Client {
                         //test if student name has been used already
                         if (findClassList(listOfClasses, newClassCode).getStudent(studName) == null) {
                             String studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                    "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                                    "Give us a list of marks of that first student! (decimals allowed)" +
+                                            "\nRemember to add a space between marks to represent separate marks!" +
+                                            "\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
 
                             while (true) {
                                 if (stringToDoubleArray(studMarks) != null) {
                                     break;
                                 }
+                                //invalid message
                                 uiShowMessage("Your list of marks contains a non number! It's invalid!");
 
+                                //A string of the user marks to be converted into double and sent into the program
                                 studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                        "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                                        "Give us a list of marks of that first student! (decimals allowed)" +
+                                                "\nRemember to add a space between marks to represent separate marks!" +
+                                                "\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
                             }
                             listOfClasses.get(listOfClasses.size() - 1).addStudentInRow(new Student(studName, stringToDoubleArray(studMarks)));
 
                             menuRepeat(listOfClasses, newClassCode);
                         } else {
+                            //if user enters same name twice in the same class
                             uiShowMessage("That student name has been taken already!");
                         }
 
@@ -285,16 +332,22 @@ public class Client {
                         if (findClassList(listOfClasses, newClassCode).getStudent(studName) == null) {
 
                             String studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                    "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                                    "Give us a list of marks of that first student! (decimals allowed)" +
+                                            "\nRemember to add a space between marks to represent separate marks!" +
+                                            "\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
 
                             while (true) {
                                 if (stringToDoubleArray(studMarks) != null) {
                                     break;
                                 }
+                                //invalid messages
                                 uiShowMessage("Your list of marks contains a non number! It's invalid!");
 
+                                //A string of the user marks to be converted into double and sent into the program
                                 studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                        "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                                        "Give us a list of marks of that first student! (decimals allowed)" +
+                                                "\nRemember to add a space between marks to represent separate marks!" +
+                                                "\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
                             }
 
                             listOfClasses.get(listOfClasses.size() - 1).addStudentNewRow(new Student(studName, stringToDoubleArray(studMarks)));
@@ -305,6 +358,7 @@ public class Client {
                         }
                     }
                 } else {
+                    //if user enters the same class name nore than once
                     uiShowMessage("That ClassList name has been taken already!");
                 }
 
@@ -331,10 +385,12 @@ public class Client {
                     //switch for the classMenu of student statistics or modifying grades
                     switch (classMenu) {
                         case 0:
+                            //array of options that will be used in a popup for the user to press and interact with
                             String[] modifyOrAccessGrades = {"access a student statistic", "Modify a grade from a student"};
                             var modifyOrAccessGradesMenu = JOptionPane.showOptionDialog(null, "What would you like to do?",
                                     "Markbock", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, modifyOrAccessGrades, modifyOrAccessGrades[0]);
 
+                            //first choice in the array
                             if (modifyOrAccessGradesMenu == 0) {
                                 doAccessStudentStatistics(listOfClasses, inputClassCode);
 
@@ -349,6 +405,7 @@ public class Client {
                             var classStatsMenu = JOptionPane.showOptionDialog(null, "What would you like to do?",
                                     "Markbock", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, classStats, classStats[0]);
 
+                            //first option the user presses
                             if (classStatsMenu == 0) {
                                 uiShowMessage("The class average mark is " + findClassList(listOfClasses, inputClassCode).getClassAverageMark() + "%");
 
@@ -367,11 +424,12 @@ public class Client {
                             //if user wants to add a student anywhere in the 2D arraylist
                             if (addAndRemoveMenu == 0) {
                                 String addStudent = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                        "Where would you like to add the student type row then column\nnote that row and colum both start at index one\nYou can go one over the current row or colum\n" + findClassList(listOfClasses,
+                                        "Where would you like to add the student type row then column\nnote that row and colum both start at index one\nYou can go one over the current row or colum\n\n" + findClassList(listOfClasses,
                                                 inputClassCode).printClassroom(), "Markbock", 3));
 
                                 //catch invalid input
                                 try {
+                                    //instantiate variables in try catch
                                     int space = addStudent.indexOf(" ");
                                     int row = Integer.valueOf(addStudent.substring(0, space));
                                     int column = Integer.valueOf(addStudent.substring(space + 1));
@@ -385,18 +443,26 @@ public class Client {
 
                                         if (findClassList(listOfClasses,inputClassCode).getStudent(studName) == null) {
                                             String studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                                    "Give us a list of marks of that student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                                                    "Give us a list of marks of that first student! (decimals allowed)" +
+                                                            "\nRemember to add a space between marks to represent separate marks!" +
+                                                            "\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
 
                                             while (true) {
                                                 if (stringToDoubleArray(studMarks) != null) {
                                                     break;
                                                 }
+                                                //invalid message
                                                 uiShowMessage("Your list of marks contains a non number! It's invalid!");
+
+                                                //A string of the user marks to be converted into double and sent into the program
                                                 studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                                        "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                                                        "Give us a list of marks of that first student! (decimals allowed)" +
+                                                                "\nRemember to add a space between marks to represent separate marks!" +
+                                                                "\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
                                             }
                                             findClassList(listOfClasses, inputClassCode).addStudent(row-1, column-1, new Student(studName, stringToDoubleArray(studMarks)));
                                         } else {
+                                            //if user enters the same name more than once, there will be a popup that informs the user of their mistake
                                             uiShowMessage("That student name has been taken already!");
                                         }
 
@@ -405,7 +471,9 @@ public class Client {
                                                 "What is the first name of your student?", "Markbock", 3));
                                         if (findClassList(listOfClasses,inputClassCode).getStudent(studName) == null) {
                                             String studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                                    "Give us a list of marks of that student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                                                    "Give us a list of marks of that first student! (decimals allowed)" +
+                                                            "\nRemember to add a space between marks to represent separate marks!" +
+                                                            "\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
 
                                             while (true) {
                                                 if (stringToDoubleArray(studMarks) != null) {
@@ -413,7 +481,9 @@ public class Client {
                                                 }
                                                 uiShowMessage("Your list of marks contains a non number! It's invalid!");
                                                 studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                                        "Give us a list of marks of that student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                                                        "Give us a list of marks of that first student! (decimals allowed)" +
+                                                                "\nRemember to add a space between marks to represent separate marks!" +
+                                                                "\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
                                             }
                                             findClassList(listOfClasses, inputClassCode).addStudentNewRow(new Student(studName, stringToDoubleArray(studMarks)));
                                         } else {
@@ -424,21 +494,28 @@ public class Client {
                                                 "What is the first name of your student?", "Markbock", 3));
                                         if (findClassList(listOfClasses,inputClassCode).getStudent(studName) == null) {
                                             String studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                                    "Give us a list of marks of that first student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                                                    "Give us a list of marks of that first student! (decimals allowed)" +
+                                                            "\nRemember to add a space between marks to represent separate marks!" +
+                                                            "\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
 
                                             while (true) {
                                                 if (stringToDoubleArray(studMarks) != null) {
                                                     break;
                                                 }
                                                 uiShowMessage("Your list of marks contains a non number! It's invalid!");
+
+                                                //A string of the user marks to be converted into double and sent into the program
                                                 studMarks = removeSpaceEnd(JOptionPane.showInputDialog(null,
-                                                        "Give us a list of marks of that student! (decimals allowed)\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
+                                                        "Give us a list of marks of that first student! (decimals allowed)" +
+                                                                "\nRemember to add a space between marks to represent separate marks!" +
+                                                                "\nNote that non-numbers will be rejected, <0 = 0, >100 = 100"));
                                             }
                                             findClassList(listOfClasses, inputClassCode).getStudentList().get(row-1).add(column-1,new Student(studName, stringToDoubleArray(studMarks)));
                                         } else {
                                             uiShowMessage("That student name has been taken already!");
                                         }
                                     } else {
+                                        //if user enters a number
                                         uiShowMessage("You inputted a number that is out of bounds");
                                     }
                                 } catch (Exception e) {
@@ -455,9 +532,9 @@ public class Client {
                                     int space = removeStudent.indexOf(" ");
                                     int row = Integer.valueOf(removeStudent.substring(0, space));
                                     int column = Integer.valueOf(removeStudent.substring(space + 1));
-                                    findClassList(listOfClasses, inputClassCode).removeStudent(row, column);
+                                    findClassList(listOfClasses, inputClassCode).removeStudent(row-1, column-1);
                                 } catch (Exception e) {
-                                    uiShowMessage("You did not type a valid input");
+                                    uiShowMessage("You did not type a valid input or you went out of bounds");
                                 }
                             }
                             break;
@@ -612,6 +689,3 @@ public class Client {
 
 //TODO: list of things that don't work
 // remove
-
-//TODO: list of things that need to be made
-// option to quit program
